@@ -1,10 +1,16 @@
 //import firebase from "firebase";
 import firebase from "firebase/app";
 import "firebase/database"; // If using Firebase database
-import "firebase/storage"; // If using Firebase storage
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const firebaseConfig = {
+import "firebase/storage"; // If using Firebase storage
+//import { getAuth, onAuthStateChanged } from "firebase/auth";
+import "firebase/auth";
+import "firebase/firestore";
+
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+
+//require('firebase/auth')
+export const firebaseConfig = {
   apiKey: "AIzaSyDJraAatmuzz_hggdnvzuk8ptq3rYfIW34",
   authDomain: "profilebuilder-973c6.firebaseapp.com",
   projectId: "profilebuilder-973c6",
@@ -15,7 +21,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fire = firebase.initializeApp(firebaseConfig);
-//const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-export default fire;
+export const fire = firebase.initializeApp(
+  firebaseConfig
+  //   {
+  //   ...firebaseConfig,
+  //   projectId: firebaseConfig?.projectId,
+  // }
+);
+export const db = getFirestore(fire);

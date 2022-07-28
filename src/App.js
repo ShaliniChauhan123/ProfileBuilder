@@ -1,9 +1,12 @@
 //import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 import React, { useState, useEffect } from "react";
-import fire from "./fire";
+import { fire } from "./fire";
 import Login from "./Login";
 import "./App.css";
+import "grapesjs/dist/css/grapes.min.css";
 import Home from "./Home";
+import Template from "./Template";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState("");
@@ -81,7 +84,16 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Home handleLogout={handleLogout} />
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Home handleLogout={handleLogout} />}
+            />
+            <Route path="/template" element={<Template />} />
+          </Routes>
+        </Router>
       ) : (
         <Login
           email={email}
